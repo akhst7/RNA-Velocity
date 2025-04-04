@@ -9,5 +9,8 @@ This section describes perhaps the easiest to overcome some of the major compati
 
 ## Prepartion of a ```h5ad``` file in R
 
-In python, bioinformatics data including scRNAseq ones are generally handeled  by an ```Anndata``` package.  The ```Anndata``` package creates a data object (obj) that is structually dissimilar to ```Suerat``` or ```SingleCellExperiment``` objs.  
-![Screenshot 2025-04-04 at 3 59 02 PM](https://github.com/user-attachments/assets/36e59641-76b2-4b59-ae3f-cfe8fb89af77)
+In python, bioinformatics data including scRNAseq ones are generally handeled  by an ```Anndata``` package.  The ```Anndata``` package creates a data object (obj) that is structually ```Anndata``` package to ```Suerat``` or ```SingleCellExperiment``` objs, which gives rise to some issues converting those objs to ```Anndata``` objs.  
+
+![Screenshot 2025-04-04 at 4 01 49 PM](https://github.com/user-attachments/assets/37068cad-312d-43fd-8121-908512227593)
+
+
