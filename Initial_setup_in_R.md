@@ -11,6 +11,11 @@ This section describes perhaps the easiest to overcome some of the major compati
 
 In python, bioinformatics data including scRNAseq ones are generally handeled  by an ```Anndata``` package.  The ```Anndata``` package creates a data object (obj) that is structually ```Anndata``` package to ```Suerat``` or ```SingleCellExperiment``` objs, which gives rise to some issues converting those objs to ```Anndata``` objs.  
 
+### AnnData Obj
 ![Screenshot 2025-04-04 at 4 01 49 PM](https://github.com/user-attachments/assets/37068cad-312d-43fd-8121-908512227593)
 
+### SingleCellExperiment Obj
+![Screenshot 2025-04-04 at 4 03 12 PM](https://github.com/user-attachments/assets/79561cc7-9268-4b66-bcb5-4ec807b60bbb)
+
+It is possible to create the ```Anndata``` ojb in R by using ```anndata``` or ```anndataR``` (newer) packages but the easier way is to somehow convert existing either the ```Seurat``` or ```SingleCellExperiment``` obj to the ```Anndata``` obj, and it turns out that there are a few R packages can do this.  
 
