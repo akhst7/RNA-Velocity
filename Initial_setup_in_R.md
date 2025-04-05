@@ -8,11 +8,7 @@ There are several R as well as python packages that can model, estimate and visu
 This section describes perhaps the easiest to overcome some of the major compatibility issues. 
 ## Generating Spliced, and Unspliced Counts by using STARSolo
 
-STARSolo (scRNAseq version of STAR aligner) was used for counting spliced, unspliced, and ambiguous counts. This portion was already covered.  Please, refer to the ```RNA Velocity``` section of 
-
-
-
-
+STARSolo (scRNAseq version of STAR aligner) was used for counting spliced, unspliced, and ambiguous counts. This portion was already covered.  Please, refer to the ```RNA Velocity``` section of ***An-immunophenotype-coupled_transcriptomic_atlas_of-human_hematopoietic_progenitors***  (https://github.com/akhst7/An-immunophenotype-coupled_transcriptomic_atlas_of-human_hematopoietic_progenitors/blob/main/Analysis%20of%20the%20full%20data%20set.md#rna-velocity)
 
 ## Prepartion of a ```h5ad``` file in R
 
