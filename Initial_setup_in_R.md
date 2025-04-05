@@ -8,54 +8,8 @@ There are several R as well as python packages that can model, estimate and visu
 This section describes perhaps the easiest to overcome some of the major compatibility issues. 
 ## Generating Spliced, and Unspliced Counts by using STARSolo
 
-STARSolo (scRNAseq version of STAR aligner) was used for counting spliced, unspliced, and ambiguous counts.
-```
-$ STAR --version (https://github.com/alexdobin/STAR/blob/master/docs/STARsolo.md)
-2.7.11b
-```
-I run a following script to get counts;
-```
-#!/opt/homebrew/bin/zsh
+STARSolo (scRNAseq version of STAR aligner) was used for counting spliced, unspliced, and ambiguous counts. This portion was already covered.  Please, refer to the ```RNA Velocity``` section of 
 
-index=/Volumes/MySlateDrive/star_genome_index/index_human_Gencode_GRCh38_p14_47
-whitelist=/Volumes/Bioinformatics/star_genome_index/3M-february-2018.txt
-r1=/Volumes/MySlateDrive/wF26_CD34/SRR26369766_1.fastq.gz
-r2=/Volumes/MySlateDrive/wF26_CD34/SRR26369766_2.fastq.gz
-r3=/Volumes/MySlateDrive/wF26_CD34/SRR26369772_1.fastq.gz
-r4=/Volumes/MySlateDrive/wF26_CD34/SRR26369772_2.fastq.gz
-r5=/Volumes/MySlateDrive/wF26_CD34/SRR26369773_1.fastq.gz
-r6=/Volumes/MySlateDrive/wF26_CD34/SRR26369773_2.fastq.gz
-r7=/Volumes/MySlateDrive/wF26_CD34/SRR26369797_1.fastq.gz
-r8=/Volumes/MySlateDrive/wF26_CD34/SRR26369797_2.fastq.gz
-
-STAR --genomeDir $index \
---runThreadN 50 \
---readFilesCommand 'pigz -c -d' \
---readFilesIn $r2,$r4,$r6,$r8 $r1,$r3,$r5,$r7 \
---soloCBwhitelist $whitelist \
---soloType CB_UMI_Simple \
---soloCBstart 1 \
---soloCBlen 16 \
---soloUMIstart 17 \
---soloUMIlen 12 \
---soloStrand Forward \
---twopassMode Basic \
---clipAdapterType CellRanger4 \
---soloMultiMappers EM \
---soloFeatures Gene GeneFull Velocyto \
---outFilterMultimapNmax 1 \
---outFilterScoreMin 30 \
---soloCBmatchWLtype 1MM_multi_Nbase_pseudocounts \
---soloUMIfiltering MultiGeneUMI_CR \
---soloUMIdedup 1MM_CR \
---soloCellFilter  EmptyDrops_CR \
---soloCellReadStats Standard \
---outReadsUnmapped Fastx \
---outFileNamePrefix /Volumes/Bioinformatics/WF26_CD34 \
---outSAMattributes NH HI CR CB CY UR UY sM \
---outSAMattrRGline ID:WF26.CD34 \
---outSAMtype BAM SortedByCoordinate
-```
 
 
 
