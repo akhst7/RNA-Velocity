@@ -20,6 +20,6 @@ In python, bioinformatics data including scRNAseq ones are generally handeled  b
 ### SingleCellExperiment Obj
 ![Screenshot 2025-04-04 at 4 03 12 PM](https://github.com/user-attachments/assets/79561cc7-9268-4b66-bcb5-4ec807b60bbb)
 
-It is possible to create the ```Anndata``` ojb in R by using ```anndata``` or ```anndataR``` (newer) packages but the easier way is to somehow convert existing either the ```Seurat``` or ```SingleCellExperiment``` obj to the ```Anndata``` obj, and it turns out that there are a few R packages can do this. Among them, the best is ```Zellkonverter```  and is again from Theislab.  ```Zellkonverter``` takes the ```SingleCellExperiment``` obj (but unfortunately not ```Seurat```), and convert it to the ```AnnData``` obj which then is saved as the ```h5ad``` file.  
+It is possible to create the ```Anndata``` ojb in R by using ```anndata``` or ```anndataR``` (newer) packages but the easier way is to somehow convert existing either the ```Seurat``` or ```SingleCellExperiment``` obj to the ```Anndata``` obj, and it turns out that there are only a few R packages can do this. Among them, the best is ```Zellkonverter```  from once again from Theislab.  ```Zellkonverter``` takes the ```SingleCellExperiment``` obj (but unfortunately not ```Seurat```), and convert it to the ```AnnData``` obj which then is saved as the ```h5ad``` file.  
 
 ### 
