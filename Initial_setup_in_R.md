@@ -1,9 +1,9 @@
-# RNA Velocity Analysis of Human HSCs scRNAseq data from Xuan_Zhang et.al
+# RNA Velocity Analysis of Human HSCs scRNAseq data from Xuan_Zhang et.al. 
 ## Introduction
 
 RNA velocity is used to provide aids in understanding dybamic states of cell differentiation, based on asscessing kinetics of spliced and unspliced RNA from clusters of cells that are defined by annotation of scRNAseq data.  It diplays direction as well as momentum of cellular differentiation, inferring potential development of immature to mature stages of groups of cells in question.   The original Nature article by ```Manno et.al.``` (https://www.nature.com/articles/s41586-018-0414-6) describes theoretical basis and alogorithm of RNA velocity.  
 
-There are several R as well as python packages that can model, estimate and visualize RNA velocity from scRNAseq data, however I picked a python package, ```Scvelo``` from Theislab (https://scvelo.readthedocs.io/en/stable/) which probably is the most comprehensive package for the analysis of RNA velocity.  The only issue of using ```Scvelo``` is that I use two R pacakges, ```Seurat``` and ```SingleCellExperiment``` for the bulk of scRNAseq analysis and a lot times, interoperability between python and R packages is not optimum, requiring a few still painstaiking intermediate processes to make ```Seurat``` and ```SingleCellExperiment``` file to be compatible with ```Scvelo.```   Unfortunately, there are not any R packages that are as comprehensive  and capable as ```Scvelo.```  
+There are several R as well as python packages that can model, estimate and visualize RNA velocity from scRNAseq data, however I picked a python package, ```Scvelo``` from Theislab (https://scvelo.readthedocs.io/en/stable/) which probably is the most comprehensive package for the analysis of RNA velocity.  The only issue of using ```Scvelo``` is that I use two R pacakges, ```Seurat``` and ```SingleCellExperiment``` for the bulk of scRNAseq analysis and a lot times, interoperability between python and R packages is not optimum, requiring a few still painstaiking intermediate processes to make ```Seurat``` and ```SingleCellExperiment``` file to be compatible with ```Scvelo.```   Unfortunately, there are not any R packages that are as comprehensive  and capable as ```Scvelo```.
 
 This section describes perhaps the easiest to overcome some of the major compatibility issues. 
 ## Generating Spliced, and Unspliced Counts by using STARSolo
@@ -12,7 +12,7 @@ STARSolo (scRNAseq version of STAR aligner) was used for counting spliced, unspl
 
 ## Prepartion of a ```h5ad``` file in R
 
-In python, bioinformatics data including scRNAseq ones are generally handeled  by an ```Anndata``` package.  The ```Anndata``` package creates a data object (obj) that is structually ```Anndata``` package to ```Suerat``` or ```SingleCellExperiment``` objs, which gives rise to some issues converting those objs to ```Anndata``` objs.  
+In Python, bioinformatics data including scRNAseq ones are generally handeled  by an ```Anndata``` package.  The ```Anndata``` package creates a data object (obj) that is structually distinct from ```Suerat``` and ```SingleCellExperiment``` objs, which gives rise to some issues converting those objs to ```Anndata``` objs.  
 
 ### AnnData Obj
 ![Screenshot 2025-04-04 at 4 01 49 PM](https://github.com/user-attachments/assets/37068cad-312d-43fd-8121-908512227593)
@@ -22,4 +22,9 @@ In python, bioinformatics data including scRNAseq ones are generally handeled  b
 
 It is possible to create the ```Anndata``` ojb in R by using ```anndata``` or ```anndataR``` (newer) packages but the easier way is to somehow convert existing either the ```Seurat``` or ```SingleCellExperiment``` obj to the ```Anndata``` obj, and it turns out that there are only a few R packages can do this. Among them, the best is ```Zellkonverter```  from once again from Theislab.  ```Zellkonverter``` takes the ```SingleCellExperiment``` obj (but unfortunately not ```Seurat```), and convert it to the ```AnnData``` obj which then is saved as the ```h5ad``` file.  
 
-### 
+### Scanpy, ScVelo, and CellRank ###
+<img width="558" height="244" alt="Scanpy_Logo_BrightFG" src="https://github.com/user-attachments/assets/5d443e35-f028-4e2d-b35b-d86f0ce816b6" />
+<img width="1920" height="515" alt="light_mode_logo" src="https://github.com/user-attachments/assets/fac6498f-2506-43fb-9ed5-8de5fe86ef02" />
+
+All these Python packages will be used to estimate RNAvelocity with a vivid graphically represented direction and velocity of cellular differetiation within a tissue in question.  All these packages are originally invented by Theis lab except ```CellRank```(https://cellrank.readthedocs.io/en/latest/) is a collaboration between Theis and Peer labs.  ```Scanpy``` (https://scanpy.readthedocs.io/en/stable/index.html)  is a general informatic scRNAseq analysis tool just as powerful as ```Seurat``` in R, and is now maintained by ```ScVerse``` (Foundational tools for omics data in the life sciences).  ```scVelo```was a packages originally developed for RNAVelocity but ```CellRank``` currently has taken over a majority of ```scVelo``` functions. 
+
