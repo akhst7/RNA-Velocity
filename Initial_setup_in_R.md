@@ -17,7 +17,7 @@ In Python, bioinformatics data including scRNAseq ones are generally handeled  b
 ### AnnData Obj
 ![Screenshot 2025-04-04 at 4 01 49 PM](https://github.com/user-attachments/assets/37068cad-312d-43fd-8121-908512227593)
 
-### SingleCellExperiment Obj
+### SingleCellExperiment (SCE) Obj
 ![Screenshot 2025-04-04 at 4 03 12 PM](https://github.com/user-attachments/assets/79561cc7-9268-4b66-bcb5-4ec807b60bbb)
 
 It is possible to create the ```Anndata``` ojb in R by using ```anndata``` or ```anndataR``` (newer) packages but the easier way is to somehow convert existing either the ```Seurat``` or ```SingleCellExperiment``` obj to the ```Anndata``` obj, and it turns out that there are only a few R packages can do this. Among them, the best is ```Zellkonverter```  from once again from Theislab.  ```Zellkonverter``` takes the ```SingleCellExperiment``` obj (but unfortunately not ```Seurat```), and convert it to the ```AnnData``` obj which then is saved as the ```h5ad``` file.  
@@ -27,4 +27,56 @@ It is possible to create the ```Anndata``` ojb in R by using ```anndata``` or ``
 <img width="1920" height="515" alt="light_mode_logo" src="https://github.com/user-attachments/assets/fac6498f-2506-43fb-9ed5-8de5fe86ef02" />
 
 All these Python packages will be used to estimate RNAvelocity with a vivid graphically represented direction and velocity of cellular differetiation within a tissue in question.  All these packages are originally invented by Theis lab except ```CellRank```(https://cellrank.readthedocs.io/en/latest/) is a collaboration between Theis and Peer labs.  ```Scanpy``` (https://scanpy.readthedocs.io/en/stable/index.html)  is a general informatic scRNAseq analysis tool just as powerful as ```Seurat``` in R, and is now maintained by ```ScVerse``` (Foundational tools for omics data in the life sciences).  ```scVelo```was a packages originally developed for RNAVelocity but ```CellRank``` currently has taken over a majority of ```scVelo``` functions. 
+## Brief Description of Key Steps
+An output of ```STARSolo``` contains multiple folders. The folder that contains data for RNAVelocity is called a **Gene** and **Velocyte** (see below).  
+```
+fs::dir_tree("/Volumes/Document/WF26_CD34Solo.out")
+/Volumes/Document/WF26_CD34Solo.out
+├── Barcodes.stats
+├── Gene
+│   ├── CellReads.stats
+│   ├── Features.stats
+│   ├── Summary.csv
+│   ├── UMIperCellSorted.txt
+│   ├── filtered
+│   │   ├── barcodes.tsv
+│   │   ├── features.tsv
+│   │   └── matrix.mtx
+│   └── raw
+│       ├── UniqueAndMult-EM.mtx
+│       ├── barcodes.tsv
+│       ├── features.tsv
+│       └── matrix.mtx
+├── GeneFull
+│   ├── CellReads.stats
+│   ├── Features.stats
+│   ├── Summary.csv
+│   ├── UMIperCellSorted.txt
+│   ├── filtered
+│   │   ├── barcodes.tsv
+│   │   ├── features.tsv
+│   │   └── matrix.mtx
+│   └── raw
+│       ├── UniqueAndMult-EM.mtx
+│       ├── barcodes.tsv
+│       ├── features.tsv
+│       └── matrix.mtx
+└── Velocyto
+    ├── Features.stats
+    ├── Summary.csv
+    ├── filtered
+    │   ├── ambiguous.mtx
+    │   ├── barcodes.tsv
+    │   ├── features.tsv
+    │   ├── spliced.mtx
+    │   └── unspliced.mtx
+    └── raw
+        ├── ambiguous.mtx
+        ├── barcodes.tsv
+        ├── features.tsv
+        ├── spliced.mtx
+        └── unspliced.mtx
+```
+Basically, you need these files,```spliced.mtx, unspliced.mtx and features.tsv from ```filtered``` under ```Velocyte``` folder as well as 
+  
 
