@@ -77,6 +77,27 @@ fs::dir_tree("/Volumes/Document/WF26_CD34Solo.out")
         ├── spliced.mtx
         └── unspliced.mtx
 ```
-Basically, you need these files,```spliced.mtx, unspliced.mtx and features.tsv from ```filtered``` under ```Velocyte``` folder as well as 
-  
+Basically, you need these files,```spliced.mtx, unspliced.mtx and features.tsv from ```filtered``` under ```Velocyte``` folder as well as everything in a ```filtered``` folder under ```Gene``` (for constructing a main "counts" matrix).  Based on these files, a SEC obj with 3 matrixes (gex, spliced, and unspliced) will be created.
+First thing first is import all the count matrix to R;
+1. Importing a GEX matrix
+```ReadMtx(mtx = "/Volumes/Bioinformatics/WF26_CD34Solo.out/Gene/filtered/matrix.mtx", cells = "/Volumes/Bioinformatics/WF26_CD34Solo.out/Gene/filtered/barcodes.tsv", features = "/Volumes/Bioinformatics/WF26_CD34Solo.out/Gene/filtered/features.tsv")-> gex.mtx```
+2. Importing a Spliced matrix
+```spliced.mtx<-ReadMtx(mtx = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/spliced.mtx", cells = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/barcodes.tsv", features = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/features.tsv")```
+3. Importing a Unspliced matrix
+```unspliced.mtx<-ReadMtx(mtx = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/unspliced.mtx", cells = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/barcodes.tsv", features = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/features.tsv")```
+Then, the SCE ojb will be created as follows;
+```
+WF26CD34Velo.sce<-SingleCellExperiment(list(counts=gene.mtx, spliced=spliced.mtx, unspliced=unspliced.mtx))
+```
+At this point, it is a good practive to save ```WF26CD34Velo.sce```.  Since this sce obj is moderately large,it is nice to speed up a saving process as follows;
+```
+con<-pipe("xz -T0 --best > WF26CD34Velo.sce", "wb")
+save(WF26CD34Velo.mini, file = con, envir = .GlobalEnv);close(con = con)
+```
+This script allows the use of xz compression and forces to use a full core (-T0). 
+Once this is done, meta data and reduced dim reductions (pca and umap) will be added to the sce. 
+
+
+
+
 
