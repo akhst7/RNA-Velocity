@@ -111,9 +111,23 @@ reducedDimNames(2): X_sct1_pca X_sct1_umap
 mainExpName: NULL
 altExpNames(0):
 ```
-This sce obj, ```WF26CD34Velo``` will be converted and saved as an ```anndata``` format. 
+This sce obj, ```WF26CD34Velo``` will be converted and saved as an ```anndata``` format by using a R package called, ```zellkonverter``` which by far is the best a ***sce to ad*** file converter.  
+```
+SCE2AnnData(WF26CD34Vel.mini)->ad
 
-
-
+ad
+AnnData object with n_obs × n_vars = 10944 × 78932
+    obs: 'rn', 'orig.ident', 'nCount_RNA', 'nFeature_RNA', 'percentMT', 'percentRB', 'nCount_SCT1', 'nFeature_SCT1', 'SCT_Harmony.snn.res8', 'seurat_clusters', 'SCT_Harmony.snn.res7', 'SCT_Harmony.snn.res6', 'Level3M', 'Level3R', 'SingleR.Level3M', 'Level3M.noNA'
+    uns: 'X_name'
+    obsm: 'X_sct1_pca', 'X_sct1_umap'
+    layers: 'spliced', 'unspliced'
+```
+```Zellkonverter``` placed  ```sce``` slots to the corresponding slots in ```anndata``` perfectly.  Also, ```zellkonverter``` transforms ```dgCMatrix``` to ```dgRMatrix``` which is nice since you really dont have to do this manually.  
+The last step is to save ```ad``` to a ```h5_ad``` file on the disk so that it could be loaded into a ```Python environment``` for the RNAvelocity analysis.  For this, a package called ```anndata``` or an newer ```anndataR``` will be used as follows;
+```
+library(anndata)
+ad5$write_h5ad(filename="../../Python/ad5.h5ad")
+```
+That is all!! 
 
 
