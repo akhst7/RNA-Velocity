@@ -85,17 +85,33 @@ First thing first is import all the count matrix to R;
 ```spliced.mtx<-ReadMtx(mtx = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/spliced.mtx", cells = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/barcodes.tsv", features = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/features.tsv")```
 3. Importing a Unspliced matrix
 ```unspliced.mtx<-ReadMtx(mtx = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/unspliced.mtx", cells = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/barcodes.tsv", features = "/Volumes/Document/WF26_CD34Solo.out/Velocyto/filtered/features.tsv")```
+
 Then, the SCE ojb will be created as follows;
 ```
 WF26CD34Velo.sce<-SingleCellExperiment(list(counts=gene.mtx, spliced=spliced.mtx, unspliced=unspliced.mtx))
 ```
-At this point, it is a good practive to save ```WF26CD34Velo.sce```.  Since this sce obj is moderately large,it is nice to speed up a saving process as follows;
+At this point, it is a good practive to save ```WF26CD34Velo.sce```.  Since this sce obj is moderately large,it is nice to speed up a saving process by invoking a multithreaded/core feature in a ```xz compressor``` as follows;
 ```
 con<-pipe("xz -T0 --best > WF26CD34Velo.sce", "wb")
 save(WF26CD34Velo.mini, file = con, envir = .GlobalEnv);close(con = con)
 ```
-This script allows the use of xz compression and forces to use a full core (-T0). 
-Once this is done, meta data and reduced dim reductions (pca and umap) will be added to the sce. 
+A parameter, ***-T0*** forces xz to use a full thread/core. 
+Once this is done, meta data and reduced dim reductions (pca and umap from ```Seurat obj```) will be added to the sce. The completed sce, ```WF26CD34Velo``` has a following struture;
+```
+> WF26CD34Velo
+class: SingleCellExperiment 
+dim: 78932 10944 
+metadata(0):
+assays(3): counts spliced unspliced
+rownames(78932): DDX11L16 DDX11L1 ... ENSG00000297844 ENSG00000309258
+rowData names(0):
+colnames(10944): AAACCCAAGCTACTGT AAACCCACAACGGCCT ... TTTGTTGTCTCATAGG TTTGTTGTCTCGTCAC
+colData names(16): rn orig.ident ... SingleR.Level3M Level3M.noNA
+reducedDimNames(2): X_sct1_pca X_sct1_umap
+mainExpName: NULL
+altExpNames(0):
+```
+This sce obj, ```WF26CD34Velo``` will be converted and saved as an ```anndata``` format. 
 
 
 
