@@ -7,3 +7,6 @@ Similar to R, You can run Python straight in the terminal however, using Python 
 A following does not cover installation of these Python packages, which are well described in their github sites.  
 
 ## Initial Setup ##
+How to install all the **Python packages**  and use ***Positron*** wont be covered here, which are well described in correspoding github pages.  You can either use ```conda``` or  ```uv``` to setup an ```Python environment``` where all the analysis relevent pacakges including scanpy, scVelo, and CellRank will be installed. Installation should be smooth without any struggles.  
+
+## Initial Step with Scanpy ##
