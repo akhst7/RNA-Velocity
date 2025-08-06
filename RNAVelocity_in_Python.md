@@ -32,7 +32,15 @@ import glasbey
 import matplotlib.pyplot as plt
 ```
 Then, import ```h5ad``` file;
-```ad5=ad.io.read_h5ad('ad5.h5ad')```
+```
+ad=ad.io.read_h5ad('ad.h5ad')
+ad
+AnnData object with n_obs × n_vars = 10944 × 78932
+    obs: 'rn', 'orig.ident', 'nCount_RNA', 'nFeature_RNA', 'percentMT', 'percentRB', 'nCount_SCT1', 'nFeature_SCT1', 'SCT_Harmony.snn.res8', 'seurat_clusters', 'SCT_Harmony.snn.res7', 'SCT_Harmony.snn.res6', 'Level3M', 'Level3R', 'SingleR.Level3M', 'Level3M.noNA'
+    uns: 'X_name'
+    obsm: 'X_sct1_pca', 'X_sct1_umap'
+    layers: 'spliced', 'unspliced'
+```
 
 
 
