@@ -126,7 +126,7 @@ AnnData object with n_obs × n_vars = 10944 × 78932
 The last step is to save ```ad``` to a ```h5_ad``` file on the disk so that it could be loaded into a ```Python environment``` for the RNAvelocity analysis.  For this, a package called ```anndata``` or an newer ```anndataR``` will be used as follows;
 ```
 library(anndata)
-ad5$write_h5ad(filename="../../Python/ad5.h5ad")
+ad$write_h5ad(filename="../../Python/ad5.h5ad")
 ```
 That is all!! 
 
