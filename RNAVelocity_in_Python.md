@@ -10,3 +10,29 @@ A following does not cover installation of these Python packages, which are well
 How to install all the **Python packages**  and use ***Positron*** wont be covered here, which are well described in correspoding github pages.  You can either use ```conda``` or  ```uv``` to setup an ```Python environment``` where all the analysis relevent pacakges including scanpy, scVelo, and CellRank will be installed. Installation should be smooth without any struggles.  
 
 ## Initial Step with Scanpy ##
+The first thing to do in ```Python``` enviroment is to import all the necessary packages and to setup some basic parameters(e.g. ```matplotlib``` graphic parameters) as follows;
+```
+import matplotlib_inline.backend_inline
+
+matplotlib_inline.backend_inline.set_matplotlib_formats('svg', 'png')
+
+import matplotlib as mpl
+
+mpl.rcParams['figure.dpi'] = 400
+mpl.rcParams['font.sans-serif'] = 'Arial'
+
+import pandas as pd
+import anndata as ad
+import scanpy as sc
+import scvelo as scv
+import numpy as np
+import cellrank as cr
+import hdf5plugin
+import glasbey
+import matplotlib.pyplot as plt
+```
+Then, import ```h5ad``` file;
+```ad5=ad.io.read_h5ad('ad5.h5ad')```
+
+
+
