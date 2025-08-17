@@ -71,7 +71,48 @@ grep("^MT-", rownames(WF26CD34Velo.mini), value = T)->MT.new
 [29] "MT-TH"   "MT-TS2"  "MT-TL2"  "MT-ND5"  "MT-ND6"  "MT-TE"   "MT-CYB"  "MT-TT"   "MT-TP"  
 ```
 As explained in the ```An-immunophenotype-coupled_transcriptomic_atlas_of-human_hematopoietic_progenitors``` repo, the count data uploaded by Zhang et.al. was already preprocessed including the filter with ```%MT transcripts``` less than 25%.  I have no idea why Zhang et.al. did not use the whole MT transcripts but selected handful, but if I have to guess, a lot of those MT transcripts are low abundant and insignificant for the downstream analysis so that they were selected out.  Examining the total counts of these MT transcripts
-
+```
+WF26CD34Vel.mini[mito, ]@assays@data$counts |> rowSums2() |> as.matrix()
+          [,1]
+MT-TF         7
+MT-RNR1  239109
+MT-TV        33
+MT-RNR2  648595
+MT-TL1       42
+MT-ND1   286475
+MT-TI         5
+MT-TQ         0
+MT-TM        14
+MT-ND2   276414
+MT-TW         0
+MT-TA         0
+MT-TN         0
+MT-TC        18
+MT-TY         2
+MT-CO1  1558112
+MT-TS1        0
+MT-TD        12
+MT-CO2  2183572
+MT-TK         0
+MT-ATP8    1579
+MT-ATP6  934689
+MT-CO3  1984724
+MT-TG        15
+MT-ND3   372070
+MT-TR         1
+MT-ND4L   11478
+MT-ND4   919764
+MT-TH        25
+MT-TS2      147
+MT-TL2        3
+MT-ND5   165836
+MT-ND6     1646
+MT-TE         0
+MT-CYB  1374995
+MT-TT        17
+MT-TP       359
+```
+As you can see, a half of MT transcirpts are really low abundant. Zhang et.al. selected only those MT transcripts that are above 1000, except two they did not include.  Those are ```MT-RNR1``` abd ```MT-RNR2```.  I dont know their rationale to exclude these two.  They encodes MT 12s and 16s rRNA respectively, and there is not good rationale that I can think of to exclude these two MT transcripts.  Excluding or including these two MT transcrips explains the differences in two cases of ```%MT content per cell``` seen in the above example. Cells with %MT above 25% were removed in Zhang et.al. and the new %MT revealed around 80 cells have over 25% of MT content but just to be consistent with Zhang et.al.,  a follwoing analysis will continue without removal of those 80 cells.   
 
 
 
