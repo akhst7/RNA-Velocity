@@ -135,7 +135,5 @@ MT-ND5   170503
 MT-ND6     1893
 MT-CYB  1416012
 ```
-As mentioned previously, in the original ```Seurat``` obj, there are few MT genes included in the overall featurs and counts of matching MT genes from the ```sce``` obj, ```WF26CD34Vel.mini```  are different.  This is probably due to distinct counting algorithm used in  ```StarSolo``` and ```CellRanger```, although ```CellRanger``` uses the ```Star``` algorithm as an internal counting mechaism.  Parameters of the internal ```Star`` algorithm set by 10X are different from the parameters that I set for ```StarSolo```, and counting other transcripts would be expected to be also different.   Regardless, these differences are not significant enough make the substantially differences in the downstrem analyses. 
-
-
+As mentioned previously, in the original ```Seurat``` obj, there are few MT genes included in the overall featurs and counts of matching MT genes from the ```sce``` obj, ```WF26CD34Vel.mini```  are different.  This is probably due to distinct counting algorithm used in  ```StarSolo``` and ```CellRanger```, although ```CellRanger``` uses the ```Star``` algorithm as an internal counting mechaism.  Parameters of the internal ```Star`` algorithm set by 10X are different from the parameters that I set for ```StarSolo```, and counting other transcripts would be expected to be also different.   Regardless, these differences are not significant enough make the substantially differences in the downstrem analyses. I got sidetranked and I think I spent a way too much time and space for this discrepancy.  I will get back onto the RNAVelocity estimation by ScVelo now. 
 
