@@ -113,7 +113,29 @@ MT-TT        17
 MT-TP       359
 ```
 As you can see, a half of MT transcirpts are really low abundant. Zhang et.al. selected only those MT transcripts that are above 1000, except two they did not include.  Those are ```MT-RNR1``` abd ```MT-RNR2```.  I dont know their rationale to exclude these two.  They encodes MT 12s and 16s rRNA respectively, and there is not good rationale that I can think of to exclude these two MT transcripts.  Excluding or including these two MT transcrips explains the differences in two cases of ```%MT content per cell``` seen in the above example. Cells with %MT above 25% were removed in Zhang et.al. and the new %MT revealed around 80 cells have over 25% of MT content but just to be consistent with Zhang et.al.,  a follwoing analysis will continue without removal of those 80 cells.   
-
+Total MT counts from the original ```Seurat``` obj looks very differet;
+```
+> AggregateExpression(WF26CD34.fil.su, assays = "RNA", features = H, return.seurat = F, group.by = "orig.ident")$RNA
+The following grouping variables have 1 value and will be ignored: orig.ident
+All grouping variables have 1 value only. Computing across all cells.
+Loading required namespace: BPCells
+13 x 1 sparse Matrix of class "dgCMatrix"
+               
+MT-ND1   342562
+MT-ND2   318255
+MT-CO1  1850489
+MT-CO2  2360540
+MT-ATP8    5300
+MT-ATP6 1127372
+MT-CO3  2081344
+MT-ND3   388446
+MT-ND4L   12975
+MT-ND4   972987
+MT-ND5   170503
+MT-ND6     1893
+MT-CYB  1416012
+```
+As mentioned previously, in the original ```Seurat``` obj, there are few MT genes included in the overall featurs and counts of matching MT genes from the ```sce``` obj, ```WF26CD34Vel.mini```  are different.  This is probably due to distinct counting algorithm used in  ```StarSolo``` and ```CellRanger```, although ```CellRanger``` uses the ```Star``` algorithm as an internal counting mechaism.  Parameters of the internal ```Star`` algorithm set by 10X are different from the parameters that I set for ```StarSolo```, and counting other transcripts would be expected to be also different.   Regardless, these differences are not significant enough make the substantially differences in the downstrem analyses. 
 
 
 
