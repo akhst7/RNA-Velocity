@@ -135,5 +135,24 @@ MT-ND5   170503
 MT-ND6     1893
 MT-CYB  1416012
 ```
-As mentioned previously, in the original ```Seurat``` obj, there are few MT genes included in the overall featurs and counts of matching MT genes from the ```sce``` obj, ```WF26CD34Vel.mini```  are different.  This is probably due to distinct counting algorithm used in  ```StarSolo``` and ```CellRanger```, although ```CellRanger``` uses the ```Star``` algorithm as an internal counting mechaism.  Parameters of the internal ```Star`` algorithm set by 10X are different from the parameters that I set for ```StarSolo```, and counting other transcripts would be expected to be also different.   Regardless, these differences are not significant enough make the substantially differences in the downstrem analyses. I got sidetranked and I think I spent a way too much time and space for this discrepancy.  I will get back onto the RNAVelocity estimation by ScVelo now. 
+As mentioned previously, in the original ```Seurat``` obj, there are few MT genes included in the overall featurs and counts of matching MT genes from the ```sce``` obj, ```WF26CD34Vel.mini```  are different.  This is probably due to distinct counting algorithm used in  ```StarSolo``` and ```CellRanger```, although ```CellRanger``` uses the ```Star``` algorithm as an internal counting mechaism.  Parameters of the internal ```Star``` algorithm set by 10X are different from the parameters that I set for ```StarSolo```, and counting other transcripts would be expected to be also different.   Regardless, these differences are not significant enough make the substantially differences in the downstrem analyses.  Except a few subsets,  percent mitochondoria and ribosome transcripts per cells overall look pretty consistent;
+```
+fig, axs = plt.subplots(1,2,
+    figsize=(22,5),
+    constrained_layout=True
+    )
+sc.pl.violin(ann, keys=["pct_counts_MT"], groupby="Level3M.noNA", rotation=90,ax=axs[0]  ,xlabel="Cell Subsets", show=False)
+sc.pl.violin(ann, keys=["pct_counts_RB"], groupby="Level3M.noNA", rotation=90,ax=axs[1]  ,xlabel="Cell Subsets", show=False)
+fig.suptitle('%Mito and %Ribo Transcripts in Hematopoietic Cell Subsets', fontsize=16)
+plt.savefig('%MTand%RB.png')
+```
+<img width="8800" height="2000" alt="%MTand%RB" src="https://github.com/user-attachments/assets/90c13e9e-34c1-4d13-96b6-8631ce0bb931" />
+
+I got sidetranked and I think I spent a way too much time and space for this discrepancy.  I will get back onto the RNAVelocity estimation by ScVelo now. 
+## RNAVelocity Estimation and Visualization by ScVelo and CellRank ##
+Tutorials in both ScVelo and CellRank packages are really well written, and it becomes just matter of following exactly steps in tutorials.  Anyhow, the first thing, before the RNAVelocity estimation, it is always a good idea to check overall and cell type specific proportions of ```Spliced vs Unspliced``` transcrips  as follows;
+```
+scv.pl.proportions(ann, groupby="Level3M.noNA", figsize=(20,10), save="scv.proportions.png")
+```
+<img width="1577" height="852" alt="scvelo_proportions_scv proportions" src="https://github.com/user-attachments/assets/6a530a81-af1b-4165-9f4f-4d7d9ebd7af9" />
 
