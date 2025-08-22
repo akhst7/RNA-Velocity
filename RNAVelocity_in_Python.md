@@ -155,4 +155,4 @@ Tutorials in both ScVelo and CellRank packages are really well written, and it b
 scv.pl.proportions(ann, groupby="Level3M.noNA", figsize=(20,10), save="scv.proportions.png")
 ```
 <img width="1577" height="852" alt="scvelo_proportions_scv proportions" src="https://github.com/user-attachments/assets/6a530a81-af1b-4165-9f4f-4d7d9ebd7af9" />
-
+After preprocessing, ```Ad obj``` is ready for the RNAVelocity analysis. The first step is to estimate ```momentum``` 
