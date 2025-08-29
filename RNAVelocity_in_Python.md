@@ -33,8 +33,8 @@ import matplotlib.pyplot as plt
 ```
 Then, import ```h5ad``` file;
 ```
-ad=ad.io.read_h5ad('ad.h5ad')
-ad
+an=ad.io.read_h5ad('ad.h5ad')
+an
 AnnData object with n_obs × n_vars = 10944 × 78932
     obs: 'rn', 'orig.ident', 'nCount_RNA', 'nFeature_RNA', 'percentMT', 'percentRB', 'nCount_SCT1', 'nFeature_SCT1', 'SCT_Harmony.snn.res8', 'seurat_clusters', 'SCT_Harmony.snn.res7', 'SCT_Harmony.snn.res6', 'Level3M', 'Level3R', 'SingleR.Level3M', 'Level3M.noNA'
     uns: 'X_name'
@@ -44,8 +44,8 @@ AnnData object with n_obs × n_vars = 10944 × 78932
 ```GEX counts``` are stored in a ```X``` array obj.  Just in case, a copy of X should be created in stored as one of the layers.  
 
 ```
-ad.layers["counts"]=ad.X.copy()
-ad
+an.layers["counts"]=an.X.copy()
+an
 AnnData object with n_obs × n_vars = 10944 × 78932
     obs: 'rn', 'orig.ident', 'nCount_RNA', 'nFeature_RNA', 'percentMT', 'percentRB', 'nCount_SCT1', 'nFeature_SCT1', 'SCT_Harmony.snn.res8', 'seurat_clusters', 'SCT_Harmony.snn.res7', 'SCT_Harmony.snn.res6', 'Level3M', 'Level3R', 'SingleR.Level3M', 'Level3M.noNA'
     uns: 'X_name'
@@ -149,10 +149,19 @@ plt.savefig('%MTand%RB.png')
 <img width="8800" height="2000" alt="%MTand%RB" src="https://github.com/user-attachments/assets/90c13e9e-34c1-4d13-96b6-8631ce0bb931" />
 
 I got sidetranked and I think I spent a way too much time and space for this discrepancy.  I will get back onto the RNAVelocity estimation by ScVelo now. 
+
 ## RNAVelocity Estimation and Visualization by ScVelo and CellRank ##
 Tutorials in both ScVelo and CellRank packages are really well written, and it becomes just matter of following exactly steps in tutorials.  Anyhow, the first thing, before the RNAVelocity estimation, it is always a good idea to check overall and cell type specific proportions of ```Spliced vs Unspliced``` transcrips  as follows;
 ```
-scv.pl.proportions(ann, groupby="Level3M.noNA", figsize=(20,10), save="scv.proportions.png")
+scv.pl.proportions(an, groupby="Level3M.noNA", figsize=(20,10), save="scv.proportions.png")
 ```
 <img width="1577" height="852" alt="scvelo_proportions_scv proportions" src="https://github.com/user-attachments/assets/6a530a81-af1b-4165-9f4f-4d7d9ebd7af9" />
-After preprocessing, ```Ad obj``` is ready for the RNAVelocity analysis. The first step is to estimate ```momentum``` 
+After preprocessing, ```Ad obj``` is ready for the RNAVelocity analysis. The first step is to estimate ```momentum```, simply means "mean and variance" of the certain distribution.  
+```
+scv.pp.moments(an, n_pcs=None, n_neighbors=None) 
+```
+This command calculates ```PCA and Neighbors``` if ```n_pcs and n_neighbors``` are speficified.  If these ```pca and neighbors``` are estimated already previously by ```Scanpy``` or other packages.  If the consistency with the R packages such as ```Seurat``` and ```SingleCellExperiment``` is desired, then ```PCA``` generated those pacakges ought to be used instread of a ```scv.pp.moments``` default pca setting.  This can be done by specifing which a ```pca``` value to be used;
+```
+scv.pp.moments(an, n_pcs=None, n_neighbors=None, use_rep="X_sct1_pca")
+```
+```X_sct1_pca``` is a ```PCA``` matrix that was created in R.  
