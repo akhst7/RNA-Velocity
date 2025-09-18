@@ -170,7 +170,9 @@ scv.pp.moments(an, n_pcs=None, n_neighbors=None, use_rep="X_sct1_pca")
 an.obsm["X_sct1_pca_np"]=an.obsm["X_sct1_pca"].to_numpy()
 an.obsm["X_sct1_umap_np"]=an.obsm["X_sct1_umap"].to_numpy()
 ```
-The reason why I do this was that I wanted to project velocity streams in the ```UMAP``` created in R. Simply, I am more familiar with ```R``` than ```Python``` and use ```R``` primarily for other downstream analyses.  Visualization needs to be consistent among distinct downstream analyses in order to better understand and discover underlying biological processes.  
+The reason why I do this was that I wanted to project velocity streams in the ```UMAP``` created in R. Simply, I am more familiar with ```R``` than ```Python``` and use ```R``` primarily for other downstream analyses.  Visualization needs to be consistent among distinct downstream analyses in order to better understand and discover underlying biological processes.  Anyhow, ```scanpy``` displayed the **R-UMAP** as follows;
+
+
 
 
 
