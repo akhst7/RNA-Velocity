@@ -171,7 +171,12 @@ an.obsm["X_sct1_pca_np"]=an.obsm["X_sct1_pca"].to_numpy()
 an.obsm["X_sct1_umap_np"]=an.obsm["X_sct1_umap"].to_numpy()
 ```
 The reason why I do this was that I wanted to project velocity streams in the ```UMAP``` created in R. Simply, I am more familiar with ```R``` than ```Python``` and use ```R``` primarily for other downstream analyses.  Visualization needs to be consistent among distinct downstream analyses in order to better understand and discover underlying biological processes.  Anyhow, ```scanpy``` displayed the **R-UMAP** as follows;
-
+```
+plt.rcParams["figure.figsize"]=(10,10) #matplotlib "rcParam" controls almost every aspects of the plot, for instance here,  a new figure size is set.  
+sc.pl.embedding(an,basis='X_sct1_umap.np',color="Level3M_noNA", palette=palette72, add_outline=True)
+```
+<Figure size 4000x4000 with 1 Axes><img width="1352" height="795" alt="image" src="https://github.com/user-attachments/assets/dd249795-91f2-41eb-a181-6e6975276db3" />
+I used t
 
 
 
