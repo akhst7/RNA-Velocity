@@ -176,7 +176,6 @@ plt.rcParams["figure.figsize"]=(10,10) #matplotlib "rcParam" controls almost eve
 sc.pl.embedding(an,basis='X_sct1_umap.np',color="Level3M_noNA", palette=palette72, add_outline=True)
 ```
 <Figure size 4000x4000 with 1 Axes><img width="1352" height="795" alt="image" src="https://github.com/user-attachments/assets/dd249795-91f2-41eb-a181-6e6975276db3" />
-I used t
 
 
 
